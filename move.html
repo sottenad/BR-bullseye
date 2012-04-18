@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script>
+			var time = 700;
+			var delay = 600;
+			var size = 300;
+			var h = $(window).height()-size;
+			var w = $(window).width()-size;
+			var timer;
+			timer = setInterval(anim, time+delay);
+			
+			$(function(){
+				$('#stop').live('click', function(){
+					clearInterval(timer);
+				});
+				$('#start').live('click', function(){
+					timer = setInterval(anim, time+delay);
+				});
+			});
+			function genrandom(){
+				var x = Math.random()*w;
+				var y = Math.random()*h;
+				var sizex = Math.random()*size;
+				var sizey = Math.random()*size*1.5;
+				return [x,y, sizex, sizey];
+			}
+			function anim(){
+				var point = genrandom();
+				$('img').animate({
+					top: point[1]+'px',
+					left: point[0]+'px',
+					height: point[3]+'px',
+					width: point[3]+'px'
+				},time);
+			}
+
+		</script>
+	</head>
+	<body>
+		<a href="#" id="start">start</a>
+		<a href="#" id="stop">Stop</a>
+		<img src="bull.png"  style="position:absolute;" />
+	</body>
+</html>
