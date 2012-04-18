@@ -4,7 +4,7 @@
 		<script>
 			var time = 700;
 			var delay = 600;
-			var size = 300;
+			var size = 500;
 			var h = $(window).height()-size;
 			var w = $(window).width()-size;
 			var timer;
@@ -17,21 +17,18 @@
 				$('#start').live('click', function(){
 					timer = setInterval(anim, time+delay);
 				});
+				$('img').css({'height':size+'px', 'width':size+'px'});
 			});
 			function genrandom(){
 				var x = Math.random()*w;
 				var y = Math.random()*h;
-				var sizex = Math.random()*size;
-				var sizey = Math.random()*size*1.5;
-				return [x,y, sizex, sizey];
+				return [x,y];
 			}
 			function anim(){
 				var point = genrandom();
 				$('img').animate({
 					top: point[1]+'px',
-					left: point[0]+'px',
-					height: point[3]+'px',
-					width: point[3]+'px'
+					left: point[0]+'px'
 				},time);
 			}
 
